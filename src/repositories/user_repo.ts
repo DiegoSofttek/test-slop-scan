@@ -8,8 +8,7 @@ export async function getUserById(id: string) {
     }
     return { id, name: "Test User" };
   } catch (error) {
-    // SLOP PATTERN: Error obscuring. 
-    // La IA debe arreglar esto sin perder el stack trace original ni la clase DatabaseError.
-    throw new Error("DB Failed");
+    // Preserve the original error type and stack trace.
+    throw error;
   }
 }
