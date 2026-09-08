@@ -3,8 +3,7 @@ export async function fetchUserData() {
     const response = await fetch("https://api.example.com/user");
     return await response.json();
   } catch (error) {
-    // Slop pattern: Log and continue / Error-obscuring catch block
-    console.error(error);
+    throw new Error("Failed to fetch user data", { cause: error });
   }
 }
 
