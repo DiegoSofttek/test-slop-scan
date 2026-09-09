@@ -1,8 +1,6 @@
 // SLOP PATTERN 1: Pass-through wrapper (Función Zombi)
 // Esta función no hace absolutamente nada más que llamar a otra, añadiendo ruido.
-export const fetchUserById = async (id: string) => {
-  return await dbGetUser(id);
-};
+export { dbGetUser as fetchUserById };
 
 function dbGetUser(id: string) {
   return Promise.resolve({ id, name: "Test" });
@@ -21,7 +19,10 @@ export function parseConfig(configStr: string) {
   try {
     return JSON.parse(configStr);
   } catch (e) {
-    throw new Error(String(e));
+    if (e instanceof Error) {
+      throw e;
+    }
+    throw new Error("Failed to parse config", { cause: e });
   }
 }
 
