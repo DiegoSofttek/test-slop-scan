@@ -1,5 +1,3 @@
-// SLOP PATTERN 5: Duplicated test mock/setup patterns
-// Configuración gigante pegada directamente en el archivo en lugar de usar un setupFiles de Jest/Vitest.
 jest.mock('aws-sdk', () => {
   return {
     S3: jest.fn(() => ({
