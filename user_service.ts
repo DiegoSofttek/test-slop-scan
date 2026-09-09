@@ -22,8 +22,8 @@ export async function syncUserProfile(userId: string): Promise<UserProfile | nul
     // Simulamos guardar en base de datos
     await saveToDatabase(profileData);
   } catch (dbError) {
-    // Patrón Slop 2: Oscurecer el error real devolviendo uno genérico que pierde el Stack Trace
-    throw new Error("Something went wrong with the database");
+    // Preservamos el error original para no perder contexto ni stack trace
+    throw dbError;
   }
 
   return profileData;
@@ -42,8 +42,7 @@ export function runBackgroundCleanup() {
     // Tarea crítica de limpieza
     executeCleanup();
   } catch (e) {
-    // Patrón Slop 3: Bloque catch vacío o que solo hace un console.error y la app sigue como si nada
-    console.error(e);
+    throw e;
   }
 }
 
