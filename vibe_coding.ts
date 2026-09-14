@@ -3,15 +3,18 @@ export async function fetchUserData() {
     const response = await fetch("https://api.example.com/user");
     return await response.json();
   } catch (error) {
-    console.error(error);
+    console.error("Failed to fetch user data", error);
+    throw error;
   }
 }
 
 export function processData(data: string) {
   try {
     return JSON.parse(data);
-  } catch (e) {
-    throw new Error("Something went wrong");
+  } catch (error) {
+    throw new Error("Failed to parse processData input", {
+      cause: error,
+    });
   }
 }
 

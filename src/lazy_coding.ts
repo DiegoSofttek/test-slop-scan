@@ -1,10 +1,8 @@
-export const fetchUserById = async (id: string) => {
-  return await dbGetUser(id);
-};
-
 function dbGetUser(id: string) {
   return Promise.resolve({ id, name: "Test" });
 }
+
+export const fetchUserById = dbGetUser;
 
 export function processUserData(rawData: unknown) {
   const data = rawData as Record<string, any>;
@@ -14,8 +12,8 @@ export function processUserData(rawData: unknown) {
 export function parseConfig(configStr: string) {
   try {
     return JSON.parse(configStr);
-  } catch (e) {
-    throw new Error(String(e));
+  } catch (error) {
+    throw new Error("Failed to parse config", { cause: error });
   }
 }
 
