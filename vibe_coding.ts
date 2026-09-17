@@ -4,6 +4,7 @@ export async function fetchUserData() {
     return await response.json();
   } catch (error) {
     console.error(error);
+    throw error;
   }
 }
 
@@ -11,7 +12,7 @@ export function processData(data: string) {
   try {
     return JSON.parse(data);
   } catch (e) {
-    throw new Error("Something went wrong");
+    throw e;
   }
 }
 
