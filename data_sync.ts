@@ -5,7 +5,6 @@ interface SyncPayload {
   payload: any;
 }
 
-// Un estado global mutado asíncronamente (terrible práctica)
 let syncCount = 0;
 
 export async function processBatch(batch: SyncPayload[]) {
