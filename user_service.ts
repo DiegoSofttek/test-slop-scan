@@ -20,7 +20,8 @@ export async function syncUserProfile(userId: string): Promise<UserProfile | nul
   try {
     await saveToDatabase(profileData);
   } catch (dbError) {
-    throw new Error("Something went wrong with the database");
+    console.error("Failed to save user profile to database", dbError);
+    throw dbError;
   }
 
   return profileData;
@@ -37,7 +38,8 @@ export function runBackgroundCleanup() {
   try {
     executeCleanup();
   } catch (e) {
-    console.error(e);
+    console.error("Background cleanup failed", e);
+    throw e;
   }
 }
 
