@@ -5,14 +5,12 @@ interface UserProfile {
 }
 
 export async function syncUserProfile(userId: string): Promise<UserProfile | null> {
-  const profileResponse = await fetch(`https://api.example.com/users/${userId}`)
-    .catch(() => {
-        console.log("Network error, pretending everything is fine");
-        return null;
-    });
-
-  if (!profileResponse) {
-    return null;
+  let profileResponse: Response;
+  try {
+    profileResponse = await fetch(`https://api.example.com/users/${userId}`);
+  } catch (error) {
+    console.error("Failed to fetch user profile", error);
+    throw error;
   }
 
   const profileData: UserProfile = await profileResponse.json();
@@ -20,7 +18,8 @@ export async function syncUserProfile(userId: string): Promise<UserProfile | nul
   try {
     await saveToDatabase(profileData);
   } catch (dbError) {
-    throw new Error("Something went wrong with the database");
+    console.error("Failed to save user profile to database", dbError);
+    throw dbError;
   }
 
   return profileData;
