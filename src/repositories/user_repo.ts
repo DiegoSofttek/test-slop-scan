@@ -7,6 +7,6 @@ export async function getUserById(id: string) {
     }
     return { id, name: "Test User" };
   } catch (error) {
-    throw new Error("DB Failed");
+    throw new Error("DB Failed", { cause: error });
   }
 }
