@@ -6,9 +6,8 @@ interface UserProfile {
 
 export async function syncUserProfile(userId: string): Promise<UserProfile | null> {
   const profileResponse = await fetch(`https://api.example.com/users/${userId}`)
-    .catch(() => {
-        console.log("Network error, pretending everything is fine");
-        return null;
+    .catch((error) => {
+        throw new Error(`Failed to fetch user profile for ${userId}: ${error instanceof Error ? error.message : String(error)}`);
     });
 
   if (!profileResponse) {
@@ -20,7 +19,9 @@ export async function syncUserProfile(userId: string): Promise<UserProfile | nul
   try {
     await saveToDatabase(profileData);
   } catch (dbError) {
-    throw new Error("Something went wrong with the database");
+    throw new Error(
+      `Failed to save user profile ${profileData.id} to the database: ${dbError instanceof Error ? dbError.message : String(dbError)}`
+    );
   }
 
   return profileData;
@@ -37,7 +38,7 @@ export function runBackgroundCleanup() {
   try {
     executeCleanup();
   } catch (e) {
-    console.error(e);
+    throw e;
   }
 }
 
