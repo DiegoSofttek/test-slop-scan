@@ -4,7 +4,7 @@ export async function fetchUserData() {
     return await response.json();
   } catch (error) {
     console.error("Failed to fetch user data", error);
-    throw error;
+    throw new Error("Failed to fetch user data", { cause: error });
   }
 }
 
