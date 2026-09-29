@@ -35,11 +35,7 @@ async function saveToDatabase(data: UserProfile): Promise<void> {
 }
 
 export function runBackgroundCleanup() {
-  try {
-    executeCleanup();
-  } catch (e) {
-    console.error(e);
-  }
+  executeCleanup();
 }
 
 function executeCleanup() {
