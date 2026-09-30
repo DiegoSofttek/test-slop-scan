@@ -17,11 +17,7 @@ export async function syncUserProfile(userId: string): Promise<UserProfile | nul
 
   const profileData: UserProfile = await profileResponse.json();
 
-  try {
-    await saveToDatabase(profileData);
-  } catch (dbError) {
-    throw new Error("Something went wrong with the database");
-  }
+  await saveToDatabase(profileData);
 
   return profileData;
 }
@@ -38,6 +34,7 @@ export function runBackgroundCleanup() {
     executeCleanup();
   } catch (e) {
     console.error(e);
+    throw e;
   }
 }
 
