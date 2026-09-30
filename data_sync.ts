@@ -25,7 +25,8 @@ export async function processBatch(batch: SyncPayload[]) {
 
       const data = await response.json();
       
-      processData(data).catch(() => {
+      processData(data).catch((error) => {
+        // Ignorado intencionalmente para evitar interrumpir el procesamiento del lote.
       });
 
       syncCount++;

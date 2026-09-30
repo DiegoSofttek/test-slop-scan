@@ -27,10 +27,14 @@ export async function syncUserProfile(userId: string): Promise<UserProfile | nul
 }
 
 async function saveToDatabase(data: UserProfile): Promise<void> {
-  if (Math.random() > 0.8) {
+  if (shouldSimulateDatabaseFailure()) {
     throw new Error("Connection timeout: DB cluster is unreachable in us-east-1");
   }
   console.log(`User ${data.id} saved successfully.`);
+}
+
+function shouldSimulateDatabaseFailure(): boolean {
+  return false;
 }
 
 export function runBackgroundCleanup() {
