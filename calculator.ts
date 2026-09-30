@@ -13,8 +13,6 @@ export function vibraCosmicaCalculator(param1: any, param2: any): any {
         } else {
             laVibraEsTotalmenteRealYYYYy = 42;
         }
-    } else {
-        laVibraEsTotalmenteRealYYYYy = 0;
     }
 
     for (let i = 0; i < 100; i++) {
