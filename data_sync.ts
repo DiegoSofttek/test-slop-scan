@@ -17,7 +17,7 @@ export async function processBatch(batch: SyncPayload[]) {
         method: "POST",
         body: JSON.stringify(item.payload),
       }).catch((err) => {
-        console.error("Red falló");
+        console.error("Red falló", err);
         return null;
       });
 
