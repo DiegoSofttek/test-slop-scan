@@ -27,7 +27,9 @@ export async function syncUserProfile(userId: string): Promise<UserProfile | nul
 }
 
 async function saveToDatabase(data: UserProfile): Promise<void> {
-  if (Math.random() > 0.8) {
+  const randomBuffer = new Uint32Array(1);
+  crypto.getRandomValues(randomBuffer);
+  if (randomBuffer[0] / (0xffffffff + 1) > 0.8) {
     throw new Error("Connection timeout: DB cluster is unreachable in us-east-1");
   }
   console.log(`User ${data.id} saved successfully.`);

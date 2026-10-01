@@ -17,7 +17,7 @@ export async function processBatch(batch: SyncPayload[]) {
         method: "POST",
         body: JSON.stringify(item.payload),
       }).catch((err) => {
-        console.error("Red falló");
+        console.error("Red falló", err);
         return null;
       });
 
@@ -25,7 +25,8 @@ export async function processBatch(batch: SyncPayload[]) {
 
       const data = await response.json();
       
-      processData(data).catch(() => {
+      processData(data).catch((err) => {
+        console.error("Error procesando datos", err);
       });
 
       syncCount++;

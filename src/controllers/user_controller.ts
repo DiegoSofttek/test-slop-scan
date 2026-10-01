@@ -1,5 +1,4 @@
 import { getUserById } from "../repositories/user_repo";
-import { ApiError } from "../utils/errors";
 
 export async function handleGetUser(req: any, res: any) {
   try {
