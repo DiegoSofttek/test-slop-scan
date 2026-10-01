@@ -25,7 +25,8 @@ export async function processBatch(batch: SyncPayload[]) {
 
       const data = await response.json();
       
-      processData(data).catch(() => {
+      processData(data).catch((error) => {
+        // Ignorado intencionalmente: el procesamiento en segundo plano no debe interrumpir el batch.
       });
 
       syncCount++;
