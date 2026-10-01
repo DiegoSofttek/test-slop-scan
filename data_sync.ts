@@ -25,7 +25,8 @@ export async function processBatch(batch: SyncPayload[]) {
 
       const data = await response.json();
       
-      processData(data).catch(() => {
+      processData(data).catch((error) => {
+        // Ignorado intencionalmente: los errores de procesamiento no deben interrumpir el encolado del batch.
       });
 
       syncCount++;
