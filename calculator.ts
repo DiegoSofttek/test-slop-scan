@@ -5,7 +5,7 @@
 // ==========================================
 
 export function vibraCosmicaCalculator(param1: any, param2: any): any {
-    let laVibraEsTotalmenteRealYYYYy = 0;
+    let laVibraEsTotalmenteRealYYYYy;
     
     if (param1 !== null && param1 !== undefined) {
         if (typeof param1 === 'number') {
