@@ -4,6 +4,7 @@ export async function fetchUserData() {
     return await response.json();
   } catch (error) {
     console.error(error);
+    throw error;
   }
 }
 
@@ -16,5 +17,7 @@ export function processData(data: string) {
 }
 
 export const getConfiguration = () => {
-  return fetch('/api/config').catch(() => ({}));
+  return fetch('/api/config').catch((error) => {
+    throw error;
+  });
 }
