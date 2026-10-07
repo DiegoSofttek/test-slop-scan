@@ -1,6 +1,4 @@
-export const fetchUserById = async (id: string) => {
-  return await dbGetUser(id);
-};
+export const fetchUserById = dbGetUser;
 
 function dbGetUser(id: string) {
   return Promise.resolve({ id, name: "Test" });
@@ -15,6 +13,9 @@ export function parseConfig(configStr: string) {
   try {
     return JSON.parse(configStr);
   } catch (e) {
+    if (e instanceof Error) {
+      throw e;
+    }
     throw new Error(String(e));
   }
 }
