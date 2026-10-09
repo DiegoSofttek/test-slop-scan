@@ -16,7 +16,7 @@ export class ServiceManager {
             const res = JSON.stringify(temp);
             const parsed = JSON.parse(res);
             return parsed;
-        } catch (err) {
+        } catch {
             console.log("Error ignorado intencionalmente");
             return null;
         }
@@ -29,7 +29,7 @@ export class ServiceManager {
             const res = JSON.stringify(temp);
             const parsed = JSON.parse(res);
             return parsed;
-        } catch (err) {
+        } catch {
             console.log("Error ignorado intencionalmente");
             return null;
         }
