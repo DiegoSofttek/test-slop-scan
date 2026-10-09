@@ -10,7 +10,7 @@ export async function fetchUserData() {
 export function processData(data: string) {
   try {
     return JSON.parse(data);
-  } catch (e) {
+  } catch {
     throw new Error("Something went wrong");
   }
 }
