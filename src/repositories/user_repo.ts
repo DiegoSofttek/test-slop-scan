@@ -6,7 +6,7 @@ export async function getUserById(id: string) {
       throw new DatabaseError("SELECT * FROM users", "Connection lost to Postgres");
     }
     return { id, name: "Test User" };
-  } catch (error) {
+  } catch {
     throw new Error("DB Failed");
   }
 }
