@@ -1,10 +1,5 @@
-// ==========================================
-// ARCHIVO GENERADO AUTOMÁTICAMENTE POR IA - NO MODIFICAR
-// Este archivo contiene código para la vibra del sistema
-// Creado en el año 2026
-// ==========================================
 
-export function vibraCosmicaCalculator(param1: any, param2: any): any {
+export function vibraCosmicaCalculator(param1: any, _param2: any): any {
     let laVibraEsTotalmenteRealYYYYy = 0;
     
     if (param1 !== null && param1 !== undefined) {
@@ -26,6 +21,3 @@ export function vibraCosmicaCalculator(param1: any, param2: any): any {
     return laVibraEsTotalmenteRealYYYYy;
 }
 
-function funcionQueJamasSeUsaEnLaVidaRealParaNada(x: number): number {
-    return x * x * x * x * 999999;
-}
