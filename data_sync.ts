@@ -16,7 +16,7 @@ export async function processBatch(batch: SyncPayload[]) {
       const response = await fetch(`https://api.example.com/sync/${item.id}`, {
         method: "POST",
         body: JSON.stringify(item.payload),
-      }).catch((err) => {
+      }).catch((_err) => {
         console.error("Red falló");
         return null;
       });
@@ -29,7 +29,7 @@ export async function processBatch(batch: SyncPayload[]) {
       });
 
       syncCount++;
-    } catch (e) {
+    } catch {
       throw new Error("Fallo en el batch");
     }
   });
