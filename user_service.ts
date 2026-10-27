@@ -20,7 +20,8 @@ export async function syncUserProfile(userId: string): Promise<UserProfile | nul
   try {
     await saveToDatabase(profileData);
   } catch (dbError) {
-    throw new Error("Something went wrong with the database", { cause: dbError });
+    const reason = dbError instanceof Error ? dbError.message : String(dbError);
+    throw new Error(`Failed to save profile for user ${profileData.id}: ${reason}`, { cause: dbError });
   }
 
   return profileData;

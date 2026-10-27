@@ -11,7 +11,8 @@ export function parseConfig(configStr: string) {
   try {
     return JSON.parse(configStr);
   } catch (e) {
-    throw new Error(String(e), { cause: e });
+    const reason = e instanceof Error ? e.message : String(e);
+    throw new Error(`Invalid config JSON: ${reason}`, { cause: e });
   }
 }
 
