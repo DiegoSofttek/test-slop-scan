@@ -1,10 +1,6 @@
 export const fetchUserById = async (id: string) => {
-  return await dbGetUser(id);
-};
-
-function dbGetUser(id: string) {
   return Promise.resolve({ id, name: "Test" });
-}
+};
 
 export function processUserData(rawData: unknown) {
   const data = rawData as Record<string, any>;
@@ -15,7 +11,7 @@ export function parseConfig(configStr: string) {
   try {
     return JSON.parse(configStr);
   } catch (e) {
-    throw new Error(String(e));
+    throw e instanceof Error ? e : new Error(String(e));
   }
 }
 
